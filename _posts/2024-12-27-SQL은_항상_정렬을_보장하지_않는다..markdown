@@ -2,7 +2,7 @@
 layout: post
 title: "SQL은 정렬을 보장하지 않는다!"
 date: 2024-12-27 00:00:00 +0200
-image: rookies.jpg
+image: SQL.png
 tags: [rookies, '모의해킹']
 categories: rookies
 ---
