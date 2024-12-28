@@ -2,14 +2,16 @@
 layout: post
 title: "SQL은 정렬을 보장하지 않는다!"
 date: 2024-12-27 00:00:00 +0200
-image: SQL.png
-tags: [rookies, '모의해킹']
+image: mySQL.png
+tags: [rookies, '모의해킹', 'trouble shooting']
 categories: rookies
 ---
 때는 바야흐로 루키즈 모의해킹을 진행하고 있을 때였다.
 SQL 인젝션을 블라인드로 수행하는데, ID와 이름만 반대로 정렬됐다.
 왜 그런건지 몰라서 옆자리 친구와 이유를 찾던 중
 'MySQL는 Order By가 없다면 정렬을 보장하지 않는다'라는 글을 보았다.
+
+![]({{site.baseurl}}/images/SQL.png)
 
 글의 요지는 MySQL이 Order By가 없다면
 제일 찾기 빠른 방법으로 찾기에, 정렬을 보장하지 않는다는 것이다.
