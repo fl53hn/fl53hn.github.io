@@ -22,7 +22,7 @@ SQL 인젝션을 블라인드로 수행하는데, ID와 이름만 반대로 정�
 
 
 
-참고한 문서 : [Jekyll docs][jekyll-docs]
+참고한 문서 : [MySQL는 Order By가 없다면 정렬을 보장하지 않는다][jekyll-docs]
 
 [jekyll-docs]: https://hudi.blog/mysql-no-order-by-no-sorting-guarantee/
 
