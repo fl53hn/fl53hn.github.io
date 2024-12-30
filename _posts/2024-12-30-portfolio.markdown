@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "포트폴리오"
-image: portfolio.png
+image: portfolio.PNG
 date: 2024-12-30 00:00:00 +0200
 tags: [portfolio]
 categories: portfolio
