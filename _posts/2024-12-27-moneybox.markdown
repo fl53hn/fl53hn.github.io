@@ -40,7 +40,8 @@ dirbuster결과 3가지의 경로가 나왔고, 그 중 Response를 받을 수 �
 
 /blogs로 익스텐션을 준 뒤 들어가면 Tom-hacker가 이야기를 한다.
 
-> I Already Hacked This Box and Informed. But They didn't Do any Security configuration
+> I Already Hacked This Box and Informed. 
+But They didn't Do any Security configuration
 If You Want Hint For Next Step......?
 
 해석하면 이미 Tom이라는 해커가 이 Box를 해킹했는데,
@@ -90,24 +91,109 @@ FTP로 10.0.2.5로 접속이 가능한 지 이전에서 얻은 패스워드를 �
 
 따라서 steghide를 통해 trytofind의 이미지에서 파일을 추출했다.
 
+![]({{site.baseurl}}/images/moneybox/4_1.png)
+
+'steghide'를 통해 'trytofind.jpg'를 분리한다.
+
+![]({{site.baseurl}}/images/moneybox/4_2.png)
+
+>Hello.... renu
+I tell you something Important. Your password is too Week So Change Your Password
+Don't Underestimate it.......
+
+알아낸 정보로는 2가지이다.
+1. 유저의 이름은 'renu'이다.
+2. Password가 너무 취약하다.
+-> 브루트포스를 통해 Password를 크랙하면 된다는 생각이 들었다.
+
+사용한 Password txt파일 : [10-million-password-list-top-10000.txt][passwordcrack]
+
+
+![]({{site.baseurl}}/images/moneybox/4_4.png)
+
+PASS_FILE에 Password txt파일을 넣고 진행한다.
+
+![]({{site.baseurl}}/images/moneybox/4_5.png)
+
+브루트포스로 유저'renu'의 권한을 얻었다.
+>id : renu
+password : 987654321
 
 ***
 
+# 5. SSH 로그인
+
+
+![]({{site.baseurl}}/images/moneybox/5_1.png)
+
+알아낸 ID와 PW를 통해 SSH로그인을 시도한다.
+>ssh renu@10.0.2.5
+password : 987654321
+
+'ls'명령어를 통해 'user1.txt'파일을 발견했다.
+>cat user1.txt
+Yes ... !
+You Got it User1 Flag
+-->us3r1{F14g:0ku74tbd3777y4}
+
+![]({{site.baseurl}}/images/moneybox/5_2.png)
+
+또한 lily의 폴더에 있는 user2의 flag도 알아냈다.
+
+
+***
+
+# 6. 루트 권한 상승
+
+![]({{site.baseurl}}/images/moneybox/5_3.png)
+
+'sudo -l' 명령어로 어떤 명령어를 사용할 수 있는지 확인한다.
+'(ALL : ALL) NOPASSWD: /usr/bin/perl' 사용 가능
+
+![]({{site.baseurl}}/images/moneybox/5_5.png)
+
+perl 인터프리터가 잘 작동하는 걸 확인한 후
+perl 인터프리터를 사용해 root권한으로 bash쉘을 실행시켰다.
+>sudo perl -e 'exec "/bin/bash"'
+
+![]({{site.baseurl}}/images/moneybox/5_6.png)
+
+user1.txt, user2.txt가 둘 다 txt파일이어서
+txt파일을 'find'명령어를 이용해 찾아보았으며,
+root.txt파일을 찾아냈다.
+
+![]({{site.baseurl}}/images/moneybox/5_7.png)
+
+root.txt를 'cat'명령어를 통해 열면 root Flag를 얻으며 끝난다.
+>Root flag : r00t{H4ckth3p14n3t}
+
+***
+
+참고한 사이트 : [Shocker][perl]
 
 **시행착오**
 ![]({{site.baseurl}}/images/moneybox/2_4_1.png)
+
 Password : T0m-H4ck3r로 입력 후 로그인했으나 실패했다.
 
 ![]({{site.baseurl}}/images/moneybox/2_5_1.png)
+
 Password : S3cr3t-T3xt, 3xtr4ctd4t4로 입력 후 로그인했으나 실패했다.
 
 ![]({{site.baseurl}}/images/moneybox/3_4_1.png)
+
 trytofind.jpg를 try.txt로 변환하여 보았으나 실패했다.
+
+![]({{site.baseurl}}/images/moneybox/4_3.png)
+
+'msfconsole'을 통해 진행했으나 set USERPASS_FILE에 넣어 실패했다.
 
 ***
 
 
 [steganography]:https://1000sj.tistory.com/234
+[passwordcrack]:https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt
+[perl]:https://kw470.tistory.com/201
 <!-- Jekyll also offers powerful support for code snippets:
 
 {% highlight ruby %}
