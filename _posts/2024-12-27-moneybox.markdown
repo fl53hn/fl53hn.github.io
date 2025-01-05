@@ -2,7 +2,7 @@
 layout: post
 title: "vulnhub - moneybox"
 date: 2024-09-28 00:00:00 +0200
-image: moneybox/moneybox.png
+image: moneybox.PNG
 tags: [vulnhub, '모의해킹', 'moneybox']
 categories: vulnhub
 ---
@@ -41,7 +41,8 @@ dirbuster결과 3가지의 경로가 나왔고, 그 중 Response를 받을 수 �
 /blogs로 익스텐션을 준 뒤 들어가면 Tom-hacker가 이야기를 한다.
 
 > I Already Hacked This Box and Informed. But They didn't Do any Security configuration
-> If You Want Hint For Next Step......?
+If You Want Hint For Next Step......?
+
 해석하면 이미 Tom이라는 해커가 이 Box를 해킹했는데,
 보안조치를 하지 않았다는 것 같다.
 다음 단계의 힌트도 주고 있다.
@@ -51,15 +52,46 @@ dirbuster결과 3가지의 경로가 나왔고, 그 중 Response를 받을 수 �
 F12를 눌러 개발자 도구를 확인해보니 hint를 알려주고 있다.
 > the hint is the another secret directory is S3cr3t-T3xt
 
-![]({{site.baseurl}}/images/moneybox/2_5_1.png)
+![]({{site.baseurl}}/images/moneybox/2_5.png)
 
 알려준 경로로 들어간 뒤 개발자 도구를 또 다시 확인하니
 > ..Secret Key 3xtr4ctd4t4
+
 라는 문구를 알려주었다.
 
 ***
 
+# 3. FTP 접속
 
+![]({{site.baseurl}}/images/moneybox/3_1.png)
+
+FTP로 10.0.2.5로 접속이 가능한 지 이전에서 얻은 패스워드를 통해 확인했다(password : 3xtr4ctd4t4)
+확인 결과 FTP로 접속이 가능했다.
+
+![]({{site.baseurl}}/images/moneybox/3_2.png)
+
+'ls' 명령어를 통해 볼 수 있는 파일이 있는 지 확인한 결과, 'trytofind'라는 파일이 존재했다.
+
+![]({{site.baseurl}}/images/moneybox/3_2_1.png)
+
+'trytofind'라는 파일을 'exiftool'로 확인했으나, 별 다른 건 없었다.
+
+![]({{site.baseurl}}/images/moneybox/3_3.png)
+
+'trytofind'의 사진은 고양이 사진이며 별 다른 건 없었다.
+
+***
+
+# 4. 스테가노그래피
+
+인터넷에 "이미지 숨김 내용 검색"이라고 검색하니 스테가노그래피가 나왔다.
+요약하자면 이미지와 파일을 합성할 수 있다는 것.
+참고한 블로그 : [🕵🏼스테가노그래피🕵🏼][steganography]
+
+따라서 steghide를 통해 trytofind의 이미지에서 파일을 추출했다.
+
+
+***
 
 
 **시행착오**
@@ -69,13 +101,13 @@ Password : T0m-H4ck3r로 입력 후 로그인했으나 실패했다.
 ![]({{site.baseurl}}/images/moneybox/2_5_1.png)
 Password : S3cr3t-T3xt, 3xtr4ctd4t4로 입력 후 로그인했으나 실패했다.
 
+![]({{site.baseurl}}/images/moneybox/3_4_1.png)
+trytofind.jpg를 try.txt로 변환하여 보았으나 실패했다.
+
 ***
 
-참고한 문서 : [MySQL는 Order By가 없다면 정렬을 보장하지 않는다][jekyll-docs]
 
-[jekyll-docs]: https://hudi.blog/mysql-no-order-by-no-sorting-guarantee/
-
-
+[steganography]:https://1000sj.tistory.com/234
 <!-- Jekyll also offers powerful support for code snippets:
 
 {% highlight ruby %}
