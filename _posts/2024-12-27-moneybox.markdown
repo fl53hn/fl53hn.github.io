@@ -169,9 +169,10 @@ root.txt를 'cat'명령어를 통해 열면 root Flag를 얻으며 끝난다.
 
 ***
 
-참고한 사이트 : [Shocker][perl]
+**참고한 사이트 : [Shocker][perl]**
 
 **시행착오**
+
 ![]({{site.baseurl}}/images/moneybox/2_4_1.png)
 
 Password : T0m-H4ck3r로 입력 후 로그인했으나 실패했다.
