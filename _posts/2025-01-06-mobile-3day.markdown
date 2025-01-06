@@ -1,0 +1,127 @@
+---
+layout: post
+title: "모바일 3일차"
+image: mobile.PNG
+date: 2024-12-30 00:00:00 +0200
+tags: [mobile, hacking]
+categories: mobile
+---
+
+모바일 3일차라고 쓰고 1일차나 다름 없다고 적는다.
+똑같은 오류가 반복되어서, 강의를 잘못샀는 생각까지 했었다.
+3일차 되던 날, 같이 하던 학우가 서버의 CPU 아키텍처를 바꿔보자는 이야기를 했고
+**이는 정확히 들어맞았다...** 
+
+'frida-server-16.5.9-android-arm64'를 줄곧 사용하였으나
+'frida-server-16.5.9-android-x86_arm64'로 옮기고 사용하니 제대로 작동하였다.
+
+어쨌든, frida가 제대로 구동되니 이제 다시 공부할 수 있을 거 같아 기분이 좋다!!
+
+***
+
+frida -D emulator-5554 -f com.google.android.calendar
+-> 5554 에뮬레이터에서 calendar 켜기
+
+frida-trace -D emulator-5554 -f com.android.chrome -i "recv*" -i "send*"
+-> 5554 에뮬레이터에서 chrome trace recv로 시작하는 것과 send로 시작하는 것
+--> 실제로는 -i "mem*"같이 사용한다고는 하나 실제로 사용해보니 엄청많이 나옴
+
+frida-trace -D emulator-5554 -O additional-options.txt
+-> 5554 에뮬레이터에서 txt파일 안에 내용을 읽어서 실행
+additonal-options.txt 안에는
+-f com.android.chrome --decorate -i "recv*" -i "send*" 내용 포함
+
+>frida-ls-devices
+Id             Type    Name                   OS
+local          local   Local System           Windows 10.0.19045
+emulator-5554  usb     Android Emulator 5554  Android 12
+barebone       remote  GDB Remote Stub
+socket         remote  Local Socket
+
+>frida-ps -D emulator-5554 -a
+PID  Name         Identifier
+9605  Chrome       com.android.chrome
+7763  Clock        com.google.android.deskclock
+1339  Google       com.google.android.googlequicksearchbox
+1339  Google       com.google.android.googlequicksearchbox
+1358  Messages     com.google.android.apps.messaging
+9544  Photos       com.google.android.apps.photos
+902  SIM Toolkit  com.android.stk
+6867  YouTube      com.google.android.youtube
+
+>frida-kill -D emulator-5554 9605
+frida-ps -D emulator-5554 -a
+PID  Name         Identifier
+7763  Clock        com.google.android.deskclock
+1339  Google       com.google.android.googlequicksearchbox
+1339  Google       com.google.android.googlequicksearchbox
+1358  Messages     com.google.android.apps.messaging
+9544  Photos       com.google.android.apps.photos
+902  SIM Toolkit  com.android.stk
+6867  YouTube      com.google.android.youtube
+
+***
+
+**Interceptor**
+
+1. interceptor.js 파일 생성
+Interceptor는 '특정 함수를 명시'하고, '해당 함수가 호출되면 임의의 코드를 실행'하고, '정보를 조회'할 수 있는 기능을 제공
+해당 객체는 동적으로 바이너리를 분석하는데에 있어 핵심이자 자주 사용하는 객체
+
+예시
+>var open = Module.findExportByName(null, "open");
+Interceptor.attach(open, {
+	onEnter(args) {
+		console.log("Filename: " + Memory.readUtf8String(args[0]));	// Android
+		// console.log("Filename: " + args[0].readCString() + ", " + this.context.x0.readCString());	// iOS
+		console.log("flags: " + args[1].toInt32());	// Android
+		// console.log("flags: " + args[1].toInt32() + ", " + this.context.x1);	// iOS
+	},
+	onLeave(retval) {
+		console.log("ret: " + retval);
+	}
+});
+
+2. 안드로이드의 캘린더 앱을 대상으로 스크립트를 실행
+frida -D emulator-5554 -f com.google.android.calendar -l C:\Users\Lee\Desktop\interceptor.js
+
+![]({{site.baseurl}}/images/mobile/interceptor.png)
+
+***
+
+**Interceptor & Backtrace**
+앱 분석 과정에서 실행 흐름을 동적으로 파악하기 위해서 백트레이스를 확인하는 방법
+'Interceptor를 통해 임의 함수를 후킹'하고, 'Thread.backtrace'를 사용하면 '함수가 호출되기까지의 과정'을 알아낼 수 있음
+
+예시
+>var open = Module.findExportByName(null, "open");
+Interceptor.attach(open, {
+	onEnter(args) {
+		console.log('called from:\n' + 
+			Thread.backtrace(this.context, Backtracer.FUZZY).map(DebugSymbol.fromAddress).join('\n') + '\n');
+	},
+	onLeave(retval) {
+		console.log("ret: " + retval);
+	}
+});
+
+![]({{site.baseurl}}/images/mobile/backtrace1.png)
+
+![]({{site.baseurl}}/images/mobile/backtrace2.png)
+
+**Java**
+
+>Java.perform(function () {
+    setTimeout(() => {
+        makeToast();
+    }, 200)
+})
+function makeToast(){
+    var context = Java.use('android.app.ActivityThread').currentApplication().getApplicationContext();
+    var toast = Java.use("android.widget.Toast");
+    
+    // toast.makeText(context, Java.use("java.lang.String").$new("안녕하세요 저는"), 1).show();
+    Java.scheduleOnMainThread(function() {  toast.makeText(context, Java.use("java.lang.String").$new("이재성임다"), 1).show();  })
+};
+
+***

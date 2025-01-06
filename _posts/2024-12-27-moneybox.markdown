@@ -3,7 +3,7 @@ layout: post
 title: "vulnhub - moneybox"
 date: 2024-09-28 00:00:00 +0200
 image: moneybox.PNG
-tags: [vulnhub, '모의해킹', 'moneybox']
+tags: [vulnhub, 'hacking', 'moneybox']
 categories: vulnhub
 ---
 vulnhub 중 moneybox의 풀이과정입니다.
