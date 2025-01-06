@@ -71,15 +71,15 @@ FTP로 10.0.2.5로 접속이 가능한 지 이전에서 얻은 패스워드를 �
 
 ![]({{site.baseurl}}/images/moneybox/3_2.png)
 
-'ls' 명령어를 통해 볼 수 있는 파일이 있는 지 확인한 결과, 'trytofind'라는 파일이 존재했다.
+`ls` 명령어를 통해 볼 수 있는 파일이 있는 지 확인한 결과, `trytofind`라는 파일이 존재했다.
 
 ![]({{site.baseurl}}/images/moneybox/3_2_1.png)
 
-'trytofind'라는 파일을 'exiftool'로 확인했으나, 별 다른 건 없었다.
+`trytofind`라는 파일을 `exiftool`로 확인했으나, 별 다른 건 없었다.
 
 ![]({{site.baseurl}}/images/moneybox/3_3.png)
 
-'trytofind'의 사진은 고양이 사진이며 별 다른 건 없었다.
+`trytofind`의 사진은 고양이 사진이며 별 다른 건 없었다.
 
 ***
 
@@ -93,7 +93,7 @@ FTP로 10.0.2.5로 접속이 가능한 지 이전에서 얻은 패스워드를 �
 
 ![]({{site.baseurl}}/images/moneybox/4_1.png)
 
-'steghide'를 통해 'trytofind.jpg'를 분리한다.
+`steghide`를 통해 `trytofind.jpg`를 분리한다.
 
 ![]({{site.baseurl}}/images/moneybox/4_2.png)
 
@@ -102,7 +102,7 @@ I tell you something Important. Your password is too Week So Change Your Passwor
 Don't Underestimate it.......
 
 알아낸 정보로는 2가지이다.
-1. 유저의 이름은 'renu'이다.
+1. 유저의 이름은 `renu`이다.
 2. Password가 너무 취약하다.
 -> 브루트포스를 통해 Password를 크랙하면 된다는 생각이 들었다.
 
@@ -115,7 +115,7 @@ PASS_FILE에 Password txt파일을 넣고 진행한다.
 
 ![]({{site.baseurl}}/images/moneybox/4_5.png)
 
-브루트포스로 유저'renu'의 권한을 얻었다.
+브루트포스로 유저`renu`의 권한을 얻었다.
 >id : renu
 password : 987654321
 
@@ -130,7 +130,7 @@ password : 987654321
 >ssh renu@10.0.2.5
 password : 987654321
 
-'ls'명령어를 통해 'user1.txt'파일을 발견했다.
+`ls`명령어를 통해 `user1.txt`파일을 발견했다.
 >cat user1.txt
 Yes ... !
 You Got it User1 Flag
@@ -147,8 +147,8 @@ You Got it User1 Flag
 
 ![]({{site.baseurl}}/images/moneybox/5_3.png)
 
-'sudo -l' 명령어로 어떤 명령어를 사용할 수 있는지 확인한다.
-'(ALL : ALL) NOPASSWD: /usr/bin/perl' 사용 가능
+`sudo -l` 명령어로 어떤 명령어를 사용할 수 있는지 확인한다.
+`(ALL : ALL) NOPASSWD: /usr/bin/perl` 사용 가능
 
 ![]({{site.baseurl}}/images/moneybox/5_5.png)
 
@@ -159,12 +159,12 @@ perl 인터프리터를 사용해 root권한으로 bash쉘을 실행시켰다.
 ![]({{site.baseurl}}/images/moneybox/5_6.png)
 
 user1.txt, user2.txt가 둘 다 txt파일이어서
-txt파일을 'find'명령어를 이용해 찾아보았으며,
+txt파일을 `find`명령어를 이용해 찾아보았으며,
 root.txt파일을 찾아냈다.
 
 ![]({{site.baseurl}}/images/moneybox/5_7.png)
 
-root.txt를 'cat'명령어를 통해 열면 root Flag를 얻으며 끝난다.
+root.txt를 `cat`명령어를 통해 열면 root Flag를 얻으며 끝난다.
 >Root flag : r00t{H4ckth3p14n3t}
 
 ***
@@ -185,7 +185,7 @@ trytofind.jpg를 try.txt로 변환하여 보았으나 실패했다.
 
 ![]({{site.baseurl}}/images/moneybox/4_3.png)
 
-'msfconsole'을 통해 진행했으나 set USERPASS_FILE에 넣어 실패했다.
+`msfconsole`을 통해 진행했으나 set USERPASS_FILE에 넣어 실패했다.
 
 **참고한 사이트 : [Shocker][perl]**
 

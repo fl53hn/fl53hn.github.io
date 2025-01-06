@@ -12,8 +12,8 @@ categories: mobile
 3일차 되던 날, 같이 하던 학우가 서버의 CPU 아키텍처를 바꿔보자는 이야기를 했고
 **이는 정확히 들어맞았다...** 
 
-'frida-server-16.5.9-android-arm64'를 줄곧 사용하였으나
-'frida-server-16.5.9-android-x86_arm64'로 옮기고 사용하니 제대로 작동하였다.
+`frida-server-16.5.9-android-arm64`를 줄곧 사용하였으나
+`frida-server-16.5.9-android-x86_arm64`로 옮기고 사용하니 제대로 작동하였다.
 
 어쨌든, frida가 제대로 구동되니 이제 다시 공부할 수 있을 거 같아 기분이 좋다!!
 
@@ -65,7 +65,7 @@ PID  Name         Identifier
 **Interceptor**
 
 1. interceptor.js 파일 생성
-Interceptor는 '특정 함수를 명시'하고, '해당 함수가 호출되면 임의의 코드를 실행'하고, '정보를 조회'할 수 있는 기능을 제공
+Interceptor는 `특정 함수를 명시`하고, `해당 함수가 호출되면 임의의 코드를 실행`하고, `정보를 조회`할 수 있는 기능을 제공
 해당 객체는 동적으로 바이너리를 분석하는데에 있어 핵심이자 자주 사용하는 객체
 
 예시
@@ -93,7 +93,7 @@ frida -D emulator-5554 -f com.google.android.calendar -l C:\Users\Lee\Desktop\in
 
 **Interceptor & Backtrace**
 앱 분석 과정에서 실행 흐름을 동적으로 파악하기 위해서 백트레이스를 확인하는 방법
-'Interceptor를 통해 임의 함수를 후킹'하고, 'Thread.backtrace'를 사용하면 '함수가 호출되기까지의 과정'을 알아낼 수 있음
+`Interceptor를 통해 임의 함수를 후킹`하고, `Thread.backtrace`를 사용하면 `함수가 호출되기까지의 과정`을 알아낼 수 있음
 
 예시
 {% highlight js %}
@@ -113,8 +113,10 @@ Interceptor.attach(open, {
 
 ![]({{site.baseurl}}/images/mobile/backtrace2.png)
 
-**Java**
+***
 
+**Java**
+ava.use를 통해 클래스를 객체화하고 Toast 메소드를 실행해 알림을 띄우기
 
 {% highlight js %}
 Java.perform(function () {
@@ -126,9 +128,27 @@ function makeToast(){
     var context = Java.use('android.app.ActivityThread').currentApplication().getApplicationContext();
     var toast = Java.use("android.widget.Toast");
     
-    // toast.makeText(context, Java.use("java.lang.String").$new("안녕하세요 저는"), 1).show();
+    // toast.makeText(context, Java.use("java.lang.String").$new("이재성임다"), 1).show();
     Java.scheduleOnMainThread(function() {  toast.makeText(context, Java.use("java.lang.String").$new("이재성임다"), 1).show();  })
 };
 {% endhighlight %}
+
+![]({{site.baseurl}}/images/mobile/java1.png)
+
+![]({{site.baseurl}}/images/mobile/java2.png)
+
+***
+
+**ObjC**
+ObjC는 Objective-C 클래스를 로드하는 macOS 또는 iOS 앱에서 사용, Objective-C와 관련된 정보 제공
+이지만 iOS용이므로 넘어갑니다~
+
+***
+
+Interceptor: 특정 함수를 명시하거나 콜백을 등록, 정보를 조회하는 객체
+
+Java: 안드로이드 Java 코드 후킹을 위해 사용하는 객체
+
+ObjC: iOS ObjC 코드 후킹을 위해 사용하는 객체
 
 ***
