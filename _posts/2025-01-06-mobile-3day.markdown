@@ -2,7 +2,7 @@
 layout: post
 title: "모바일 3일차"
 image: mobile.PNG
-date: 2024-12-30 00:00:00 +0200
+date: 2024-12-30 00:00:00 +0900
 tags: [mobile, hacking]
 categories: mobile
 ---
@@ -69,7 +69,8 @@ Interceptor는 '특정 함수를 명시'하고, '해당 함수가 호출되면 �
 해당 객체는 동적으로 바이너리를 분석하는데에 있어 핵심이자 자주 사용하는 객체
 
 예시
->var open = Module.findExportByName(null, "open");
+{% highlight js %}
+var open = Module.findExportByName(null, "open");
 Interceptor.attach(open, {
 	onEnter(args) {
 		console.log("Filename: " + Memory.readUtf8String(args[0]));	// Android
@@ -81,6 +82,7 @@ Interceptor.attach(open, {
 		console.log("ret: " + retval);
 	}
 });
+{% endhighlight %}
 
 2. 안드로이드의 캘린더 앱을 대상으로 스크립트를 실행
 frida -D emulator-5554 -f com.google.android.calendar -l C:\Users\Lee\Desktop\interceptor.js
@@ -94,7 +96,8 @@ frida -D emulator-5554 -f com.google.android.calendar -l C:\Users\Lee\Desktop\in
 'Interceptor를 통해 임의 함수를 후킹'하고, 'Thread.backtrace'를 사용하면 '함수가 호출되기까지의 과정'을 알아낼 수 있음
 
 예시
->var open = Module.findExportByName(null, "open");
+{% highlight js %}
+var open = Module.findExportByName(null, "open");
 Interceptor.attach(open, {
 	onEnter(args) {
 		console.log('called from:\n' + 
@@ -104,6 +107,7 @@ Interceptor.attach(open, {
 		console.log("ret: " + retval);
 	}
 });
+{% endhighlight %}
 
 ![]({{site.baseurl}}/images/mobile/backtrace1.png)
 
@@ -111,7 +115,9 @@ Interceptor.attach(open, {
 
 **Java**
 
->Java.perform(function () {
+
+{% highlight js %}
+Java.perform(function () {
     setTimeout(() => {
         makeToast();
     }, 200)
@@ -123,5 +129,6 @@ function makeToast(){
     // toast.makeText(context, Java.use("java.lang.String").$new("안녕하세요 저는"), 1).show();
     Java.scheduleOnMainThread(function() {  toast.makeText(context, Java.use("java.lang.String").$new("이재성임다"), 1).show();  })
 };
+{% endhighlight %}
 
 ***
