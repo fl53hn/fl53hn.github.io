@@ -1,0 +1,98 @@
+---
+layout: post
+title: "모바일 4일차"
+image: mobile.PNG
+date: 2024-12-30 00:00:00 +0900
+tags: [mobile, hacking]
+categories: mobile
+---
+
+***
+
+**Memory**
+Memory는 메모리와 관련된 행위를 할 수 있는 객체
+메모리의 할당, 검색, 복사, 패치, 권한 변경 가능
+
+{% highlight js %}
+var m = Process.enumerateModules()[0]; // 앱의 베이스 주소 가져오기
+
+var pattern = "2f 6c 69 62" // "/lib을 URL인코딩한 뒤 %빼기"
+var perm = 0;
+
+Memory.scan(m.base, m.size, pattern, { 
+	onMatch: function(address, size) { // 앱 내에 /lib 찾기
+		console.log('Found match at ' + address);
+
+		// get protection
+		perm = Process.findRangeByAddress(address);
+		console.log("Protection: " + perm.protection);
+
+		// 권한 변경
+		Memory.protect(address ,4096, 'rw-');
+	},
+	onComplete: function () {
+		console.log('Done');
+	}
+})
+
+var string = Memory.allocUtf8String("MadeByJSLee");
+console.log('Allocated string address: ' + string);
+var pattern2 = "4a 53 4c 65 65";   // "JSLee"
+var result = Memory.scanSync(string, 0x100, pattern2);
+console.log("Memory.scanSync() result: " + JSON.stringify(result));
+{% endhighlight %}
+
+결과화면
+![]({{site.baseurl}}/images/mobile/4day/memory.png)
+
+***
+
+**Module**
+Module은 프로세스의 주소를 알아내는 용도로 사용하는 객체
+프로세스의 베이스 주소, 외부 함수 주소를 가져올 수 있음
+
+{% highlight js %}
+var fopen = Module.findExportByName(null, "fopen");
+console.log("fopen: " + fopen);
+
+// iOS
+var mName = "libsystem_c.dylib" 
+
+// Android
+var mName = "libc.so" 
+
+var fopen_m = Module.findExportByName(mName, "fopen");
+console.log("fopen with module: " + fopen_m);
+{% endhighlight %}
+
+결과화면
+![]({{site.baseurl}}/images/mobile/4day/module.png)
+
+***
+
+Process: 프로세스와 관련된 정보를 조회할 수 있는 객체
+
+Thread: 현재 스레드에서 백트레이스를 출력할 수 있으며, 실행을 일시적으로 중지시킬 수 있는 객체
+
+Memory: 메모리와 관련된 행위를 할 수 있는 객체
+
+Module: 프로세스의 주소를 알아내는 용도로 사용하는 객체
+
+***
+
+현재 오류
+Build file 'C:\build.gradle' line: 12
+{% highlight js %}
+A problem occurred evaluating root project 'dream-detector'.
+> Could not find method plugins() for arguments [build_4dk0leo4azsfq2ue5ujdqih08$_run_closure1$_closure3$_closure4@641185f6] on object of type org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.
+
+* Try:
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+Caused by: org.gradle.internal.metaobject.AbstractDynamicObject$CustomMessageMissingMethodException: Could not find method plugins() for arguments [build_4dk0leo4azsfq2ue5ujdqih08$_run_closure1$_closure3$_closure4@641185f6] on object of type org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.
+{% endhighlight %}
+
+뭐가 문제인 지 모르겠다... GPT도 모르겠다는데 씁...
+
+***

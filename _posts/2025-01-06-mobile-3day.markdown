@@ -92,7 +92,7 @@ Interceptor.attach(open, {
 2. 안드로이드의 캘린더 앱을 대상으로 스크립트를 실행
 frida -D emulator-5554 -f com.google.android.calendar -l C:\Users\Lee\Desktop\interceptor.js
 
-![]({{site.baseurl}}/images/mobile/interceptor.png)
+![]({{site.baseurl}}/images/mobile/3day/interceptor.png)
 
 ***
 
@@ -114,9 +114,9 @@ Interceptor.attach(open, {
 });
 {% endhighlight %}
 
-![]({{site.baseurl}}/images/mobile/backtrace1.png)
+![]({{site.baseurl}}/images/mobile/3day/backtrace1.png)
 
-![]({{site.baseurl}}/images/mobile/backtrace2.png)
+![]({{site.baseurl}}/images/mobile/3day/backtrace2.png)
 
 ***
 
@@ -138,9 +138,9 @@ function makeToast(){
 };
 {% endhighlight %}
 
-![]({{site.baseurl}}/images/mobile/java1.png)
+![]({{site.baseurl}}/images/mobile/3day/java1.png)
 
-![]({{site.baseurl}}/images/mobile/java2.png)
+![]({{site.baseurl}}/images/mobile/3day/java2.png)
 
 ***
 
