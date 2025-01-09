@@ -1,0 +1,111 @@
+---
+layout: post
+title: "모바일 4일차"
+image: mobile.PNG
+date: 2024-12-30 00:00:00 +0900
+tags: [mobile, hacking]
+categories: mobile
+---
+
+이론보다 실습이 하고 싶어서 frida-lab을 머리박치기로 깨보고 싶었다.
+
+frida-lab 설치방법 : [fridalab][frida-lab]
+
+![]({{site.baseurl}}/images/mobile/5day/frida-lab_ps.png)
+
+우선 frida-lab 파일의 패키지 이름을 알아내야 한다.
+frida-lab은 uk.rossmarks.fridalab을 사용하나, 15버전 이후로
+이름을 사용한다. FridaLab을 사용해야 제대로 사용이 가능하다.
+
+![]({{site.baseurl}}/images/mobile/5day/frida.png)
+
+이미 2번까지 풀어버린 관계로 다른 사람의 이미지로 대체한다.
+
+참고한 사이트 : [프리다 연습][frida]
+
+***
+
+**frida_lab1**
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab1_avd.png)
+
+jadx를 통해 확인한 결과 chall01이라는 함수가 있었고, chall01을 1로 만들면 통과할 수 있다.
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab1_js.png)
+
+위 그림과 같이 chall의 값을 1로 만들고, 이를 js파일로 저장했다.
+
+**사용한 JS**
+{% highlight js %}
+setImmediate(function() {
+  Java.perform(function() {
+    // Challenge 01
+    var chall_01 = Java.use("uk.rossmarks.fridalab.challenge_01");
+    chall_01.chall01.value = 1;
+    console.log("\nchallenge_01 solved!");
+  });
+});
+{% endhighlight %}
+
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab1_cmd.png)
+
+그 이후, js파일을 FridaLab에 삽입하여 FridaLab을 변경시켰다.
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab1_mobile.png)
+
+결과적으로 1번 문제가 풀린 모습을 볼 수 있다.
+
+***
+
+**frida_lab2**
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab2_avd.png)
+
+2번째는 chall이라는 메소드를 실행하면 성공한다.
+jadx에서 `chall02()`를 찾은 결과 instance 메소드였으며,
+`Java.choose()`로 가져올 수 있다.
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab2_js.png)
+
+**사용한 JS**
+{% highlight js %}
+setImmediate(function() {
+  Java.perform(function() {
+    // Challenge 01
+    var chall_01 = Java.use("uk.rossmarks.fridalab.challenge_01");
+    chall_01.chall01.value = 1;
+    console.log("\nchallenge_01 solved!");
+
+    // Challenge 02
+    Java.choose("uk.rossmarks.fridalab.MainActivity", {
+      "onMatch": function(chall_02) {
+        chall_02.chall02();
+      },
+      "onComplete": function() {
+        console.log("\nchallenge_02 solved!");
+      }
+    })
+  });
+});
+{% endhighlight %}
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab2_cmd.png)
+
+1번과 동일하게 실행했다.
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab1_mobile.png)
+
+결과적으로 2번 문제가 풀린 모습을 볼 수 있다.
+
+***
+
+**시행착오**
+
+![]({{site.baseurl}}/images/mobile/5day/frida_lab_fail1.png)
+
+블로그에서는 `identifier`을 사용하라고 되어 있었지만, 15버전 이후로는 FridaLab으로 사용한다고 한다.
+
+
+[frida-lab]: https://rossmarks.uk/blog/fridalab/
+[frida] : https://velog.io/@yjok/%ED%94%84%EB%A6%AC%EB%8B%A4-%EC%97%B0%EC%8A%B5
