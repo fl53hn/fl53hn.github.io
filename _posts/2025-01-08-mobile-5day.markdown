@@ -2,7 +2,7 @@
 layout: post
 title: "모바일 5일차"
 image: mobile.PNG
-date: 2024-01-08 00:00:00 +0900
+date: 2025-01-08 00:00:00 +0900
 tags: [mobile, hacking]
 categories: mobile
 ---
