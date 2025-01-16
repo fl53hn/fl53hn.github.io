@@ -1,0 +1,125 @@
+---
+layout: post
+title: "모바일 8일차"
+image: mobile.PNG
+date: 2025-01-16 00:00:00 +0900
+tags: [mobile, hacking]
+categories: mobile
+---
+
+면접의 격동기를 지나, 다시 모바일로 돌아왔다.
+
+
+frida-lab 설치방법 : [fridalab][frida-lab]
+
+참고한 사이트 : [frida_practice][frida_practice]
+
+***
+
+**frida_lab3**
+
+![]({{site.baseurl}}/images/mobile/8day/chall07_jadx.png)
+
+jadx를 통해 확인한 결과 chall07이라는 함수가 있었고,
+chall07을 true로 바꾸면 통과할 수 있다.
+
+![]({{site.baseurl}}/images/mobile/8day/chall07_js.png)
+
+chall07을 가져와서, true값으로 바꿔준다. 이 때 바로 되는 게 아니라
+버튼을 누를 시 true로 바뀐다.
+
+**사용한 JS**
+{% highlight js %}
+    var chall_03 = Java.use("uk.rossmarks.fridalab.MainActivity");
+    chall_03.chall03.implementation = function() {
+      console.log("\nchallenge_03 solved!");
+      return true;
+    }
+{% endhighlight %}
+
+
+![]({{site.baseurl}}/images/mobile/8day/chall07_cmd.png)
+
+그 이후, js파일을 FridaLab에 삽입하여 FridaLab을 변경시켰다.
+
+![]({{site.baseurl}}/images/mobile/8day/chall07_mo.png)
+
+결과적으로 3번 문제가 풀린 모습을 볼 수 있다.
+
+***
+
+**frida_lab4**
+
+![]({{site.baseurl}}/images/mobile/8day/chall08_jadx.png)
+
+jadx를 통해 확인한 결과 chall03이라는 함수가 있었고,
+chall03을 true로 바꾸면 통과할 수 있다.
+
+![]({{site.baseurl}}/images/mobile/8day/chall08_js.png)
+
+chall03을 가져와서, true값으로 바꿔준다. 이 때 바로 되는 게 아니라
+버튼을 누를 시 true로 바뀐다.
+
+**사용한 JS**
+{% highlight js %}
+    Java.choose("uk.rossmarks.fridalab.MainActivity", {
+      "onMatch": function(c_04) {
+        c_04.chall08("frida");
+      },
+      "onComplete": function() {
+        console.log("\n4번 풀어따!!");
+      }
+    })
+{% endhighlight %}
+
+
+![]({{site.baseurl}}/images/mobile/8day/chall08_cmd.png)
+
+그 이후, js파일을 FridaLab에 삽입하여 FridaLab을 변경시켰다.
+
+![]({{site.baseurl}}/images/mobile/8day/chall08_mo.png)
+
+결과적으로 4번 문제가 풀린 모습을 볼 수 있다.
+
+***
+
+**frida_lab4**
+
+![]({{site.baseurl}}/images/mobile/8day/chall08_jadx.png)
+
+jadx를 통해 확인한 결과 chall03이라는 함수가 있었고,
+chall03을 true로 바꾸면 통과할 수 있다.
+
+![]({{site.baseurl}}/images/mobile/8day/chall08_js.png)
+
+chall03을 가져와서, true값으로 바꿔준다. 이 때 바로 되는 게 아니라
+버튼을 누를 시 true로 바뀐다.
+
+**사용한 JS**
+{% highlight js %}
+    Java.choose("uk.rossmarks.fridalab.MainActivity", {
+      "onMatch": function(c_04) {
+        c_04.chall08("frida");
+      },
+      "onComplete": function() {
+        console.log("\n4번 풀어따!!");
+      }
+    })
+{% endhighlight %}
+
+
+![]({{site.baseurl}}/images/mobile/8day/chall08_cmd.png)
+
+그 이후, js파일을 FridaLab에 삽입하여 FridaLab을 변경시켰다.
+
+![]({{site.baseurl}}/images/mobile/8day/chall08_mo.png)
+
+결과적으로 4번 문제가 풀린 모습을 볼 수 있다.
+
+***
+
+**시행착오**
+
+
+[frida_practice]: https://velog.io/@yjok/%ED%94%84%EB%A6%AC%EB%8B%A4-%EC%97%B0%EC%8A%B5
+[frida-lab]: https://rossmarks.uk/blog/fridalab/
