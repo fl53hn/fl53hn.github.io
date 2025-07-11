@@ -77,7 +77,7 @@ for (let i = 1; i <= 1000; i++) {
 존재하지 않는 값을 기준으로 잡고,
 그 값의 text 길이와 동일하지 않다면 값을 출력하는 로직이다.
 
-{% highlight python %}
+{% highlight js %}
 import requests
 import time
 cookies = {
