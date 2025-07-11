@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "google Beginner's request 1"
-image: GR1.PNG
+image: GR1.png
 date: 2025-07-11 14:55:00 +0900
 tags: [web, hacking]
 categories: web
