@@ -7,13 +7,13 @@ tags: [web, hacking]
 categories: web
 ---
 
-Google Beginner's Request1
+Google Beginner's Request
 
 Doors Everywhere1
 
 ***
 
-**Google Beginner's Request**
+**Google Beginner's Request - Doors Everywhere1**
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere1/1.png)
 

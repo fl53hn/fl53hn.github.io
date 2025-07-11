@@ -7,35 +7,33 @@ tags: [web, hacking]
 categories: web
 ---
 
-Google Beginner's Request1
+Google Beginner's Request
 
-Doors Everywhere1
+Doors Everywhere2
 
 ***
 
-**Google Beginner's Request**
+**Google Beginner's Request - Doors Everywhere2**
 
-![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere1/1.png)
+![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/0.png)
 
-Google Beginner's Request 중 1번째로 있는
-Doors Everwhere1에는
-profile안에 힌트가 있다고 설명하고 있다.
+Doors Everywhere2에 관한 설명이다.
+article중에 이상한 URL이 있다고한다.
 
-![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere1/2.png)
 
-![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere1/3.png)
+![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/1.png)
 
-로그인 뒤 Profile안에 들어가 Profile을 확인한다.
+로그인 하여 News를 확인한다.
 
-![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere1/4.png)
+![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/2.png)
 
-Profile은 위 URL와 같이 guest를 path로 사용중이다.
-이를 admin으로 변조해보겠다.
+![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/3.png)
 
-![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere1/5.png)
+최신 글은 7, 그 이전글은 5로 되어 있다.
 
-admin으로 변조 시 admin의 profile을 확인할 수 있으며
-flag 또한 획득할 수 있다.
+![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/4.png)
+
+6으로 변조할 시 FLAG를 획득할 수 있었다.
 
 
 **시행착오**
