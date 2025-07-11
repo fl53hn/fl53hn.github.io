@@ -18,6 +18,7 @@ Doors Everywhere3
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/1.png)
 
 Doors Everywhere3
+`Secret messages! Probably the most secure part of this website. There's no way to guess those URLs. ...Unless?`
 비밀 메세지를 볼 수 없다고 설명하고 있다.
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/2.png)

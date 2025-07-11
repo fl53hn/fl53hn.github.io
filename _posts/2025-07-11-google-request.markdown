@@ -18,7 +18,8 @@ Doors Everywhere1
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere1/1.png)
 
 Google Beginner's Request 중 1번째로 있는
-Doors Everwhere1에는
+Doors Everwhere1
+`A security update about profiles? There's no way there could be a flag there. Unless?`
 profile안에 힌트가 있다고 설명하고 있다.
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere1/2.png)

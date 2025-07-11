@@ -17,7 +17,7 @@ Message
 
 ![]({{site.baseurl}}/images/GoogleRequest/salt/1.png)
 
-
+`Who remembers PHP? The password_hash() function is so convenient, no one can guess my password`
 password_hash()는 간편하며, 본인의 패스워드를 볼 수 없다고 호언장담중이다.
 
 
@@ -117,4 +117,5 @@ FLAG 획득 완료
 
 1. PHP 내에 있는 기능을 python으로 옮겨오기가 힘들었다.
 
-[frida_practice]: https://pkg.go.dev/golang.org/x/crypto/bcrypt
+[bcrypt]: https://pkg.go.dev/golang.org/x/crypto/bcrypt
+[password-hash]: https://www.php.net/password-hash

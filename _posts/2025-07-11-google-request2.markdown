@@ -17,7 +17,9 @@ Doors Everywhere2
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/0.png)
 
-Doors Everywhere2에 관한 설명이다.
+
+Doors Everywhere2
+`There are a few news articles there, but there's something odd about their URLs...`
 article중에 이상한 URL이 있다고한다.
 
 
