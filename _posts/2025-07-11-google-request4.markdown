@@ -3,7 +3,7 @@ layout: post
 title: "Message"
 image: GR1.png
 date: 2025-07-10 14:55:00 +0900
-tags: [web, hacking]
+tags: [web, hacking, google]
 categories: web
 ---
 
@@ -18,6 +18,7 @@ Message
 ![]({{site.baseurl}}/images/GoogleRequest/salt/1.png)
 
 `Who remembers PHP? The password_hash() function is so convenient, no one can guess my password`
+
 password_hash()는 간편하며, 본인의 패스워드를 볼 수 없다고 호언장담중이다.
 
 
@@ -26,18 +27,23 @@ password_hash()는 간편하며, 본인의 패스워드를 볼 수 없다고 호
 코드를 확인해보자
 
 1. GET 요청으로 salt값 없이 전달할 경우
-"Salt is important for security! Please give me a salt."
+`Salt is important for security! Please give me a salt.`
+
 라는 문구가 뜬다.
 
 2. GET 요청으로 salt값을 16자 미만으로 전달할 경우
-"This is too little salt! For tasty hashes we need more."
+`This is too little salt! For tasty hashes we need more.`
+
 라는 문구가 뜬다.
 
 3. GET 요청으로 16자 이상의 Salt값을 전달할 경우
-"Here you are! A tasty hash for you 😋 The flag is secure because hashes are irreversible. Even more so if they are salty!"
+
+`Here you are! A tasty hash for you 😋 The flag is secure because hashes are irreversible. Even more so if they are salty!`
+
 라는 문구와 함께 password와 Salt값을 섞은 값을 전달한다.
 
 따라서 16자 이상의 Salt값을 전달하여 Password값을 얻어내면 된다.
+
 하지만, password_hash는 함수가 실행될 때 마다 각기 다른 값을 뽑아낸다.
 
 여기서 개념을 짚고 넘어가야 한다.

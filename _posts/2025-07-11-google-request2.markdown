@@ -3,7 +3,7 @@ layout: post
 title: "Doors Everywhere2"
 image: GR1.png
 date: 2025-07-10 14:55:00 +0900
-tags: [web, hacking]
+tags: [web, hacking, google]
 categories: web
 ---
 

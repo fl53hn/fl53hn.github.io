@@ -3,7 +3,7 @@ layout: post
 title: "No refund"
 image: GR1.png
 date: 2025-07-10 14:55:00 +0900
-tags: [web, hacking]
+tags: [web, hacking, google]
 categories: web
 ---
 
@@ -19,6 +19,7 @@ No refund
 
 
 `You had a train service cancelled and you are entitled to a full refund. However the train companies website is not allowing you to. Can you still get it?`
+
 기차 운행이 취소되어 전액 환불받으실 수 있습니다. 그런데 기차 회사 웹사이트에서는 환불이 불가능합니다. 아직 환불받으실 수 있나요?
 
 
