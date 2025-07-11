@@ -56,6 +56,27 @@ path에 대입하면 값이 나올 것이다.
 
 1~1000까지의 값을 콘솔로 얻어낸다.
 
+사용한 코드
+
+{% highlight js %}
+function generateHash(messageId) {
+    const hashHex = sha3_256(messageId.toString());
+    console.log(`ID: ${messageId} → Hash: ${hashHex}`);
+}
+
+// 1부터 1000까지 해시 생성
+for (let i = 1; i <= 1000; i++) {
+    generateHash(i);
+}
+{% highlight %}
+
+2. python을 통해 값 얻어내기
+
+얻어낸 1~1000까지의 값을 대입하여 본다.
+
+존재하지 않는 값을 기준으로 잡고,
+그 값의 text 길이와 동일하지 않다면 값을 출력하는 로직이다.
+
 
 하다보면 이렇게 손으로 하는 건 아닌지 걱정도 해주고
 
