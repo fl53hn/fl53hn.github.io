@@ -73,6 +73,7 @@ FLAG 획득 완료
 
 JWT에 alg값을 변조할 경우 뚫린다는 사실은 처음 알았는데,
 생각보다 메이저한 취약점이라고 적혀있다...
+
 참조한 사이트 : [JWT_Attack]
 
 [JWT_Attack]: https://www.vaadata.com/blog/jwt-json-web-token-vulnerabilities-common-attacks-and-security-best-practices/#exploiting-the-none-algorithm
