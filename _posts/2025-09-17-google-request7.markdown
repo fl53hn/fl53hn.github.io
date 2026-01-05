@@ -17,6 +17,7 @@ Falling Slowly... Again
 
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/1.png)
 
+HTTPS://once-web.2024-BQ.ctfcompetition.com
 
 `This site boasts a defense against XSS, but its security is like a falling leaf – slow and predictable. It relies on a mechanism that, while sound in theory, has a fatal flaw in its execution. Can you exploit this weakness to inject your own malicious code and take control?`
 
@@ -39,15 +40,18 @@ admin에 전송할 링크 전송 시 admin이 그 링크로 이동하는 시스�
 
 이렇게 전개하면 될 거 같다.
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/3.png)
 
 우선적으로 간단한 스크립트문을 삽입하여준다.
+
 
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/4.png)
 
 삽입 후 확인 시 CSP 정책에 의해 막히는 걸 볼 수 있다.
 
 CSP의 경우는 보통 요청 값이나 응답 값에 노출되는 경우가 있다.
+
 
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/5.png)
 
@@ -60,6 +64,7 @@ CSP의 경우는 보통 요청 값이나 응답 값에 노출되는 경우가 �
 
 작성 시 CSP 정책을 우회할 수 있을 것이다.
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/6.png)
 
 아까와 같이 스크립트를 삽입한다.
@@ -69,10 +74,12 @@ CSP의 경우는 보통 요청 값이나 응답 값에 노출되는 경우가 �
 {% endhighlight %}
 으로 CSP 정책을 우회하게끔 작성하였다.
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/7.png)
 
 작성된 구문으로 요청 값을 보낼 시 예상과 같이 스크립트 문이 실행된다.
 이를 통해 CSP를 우회한 스크립트문을 삽입할 수 있다.
+
 
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/8.png)
 
@@ -83,6 +90,7 @@ name값에 악성 스크립트문을 작성하여 요청을 보낼 경우, 공�
 {% endhighlight %}
 
 ADMIN에게 name에 스크립트문 삽입한 URL을 보낼 경우 admin의 document.cookie값을 알아낼 수 있다.
+
 
 ![]({{site.baseurl}}/images/GoogleRequest/FSA/9.png)
 

@@ -35,6 +35,7 @@ No refund
 
 위의 ticket_id를 확인한 뒤 아래에서 Post 전송 값 중 ticket_id를 변조하여 전송했다.
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/Norefund/5.png)
 
 FLAG 획득 완료

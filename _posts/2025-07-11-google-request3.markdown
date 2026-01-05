@@ -17,14 +17,17 @@ Doors Everywhere3
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/1.png)
 
+HTTPS://secuweb-web.2024-BQ.ctfcompetition.com
+
+
 Doors Everywhere3
 `Secret messages! Probably the most secure part of this website. There's no way to guess those URLs. ...Unless?`
 비밀 메세지를 볼 수 없다고 설명하고 있다.
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/2.png)
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/3.png)
-
 
 로그인 뒤 비밀 메세지 안에 개발자 도구를 확인하니
 generateHash를 통해 비밀 ID를 해시값으로 변경 후 
@@ -34,10 +37,12 @@ Secret ID를 Path로 입력 시 그 메세지를 확인할 수 있는 로직이�
 개발자 도구의 주석에서 뭐라고 적혀있긴 한데
 번역기를 돌려놔서 그런지 잘 모르겠다;;
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/4.png)
 
 어쨌든 generateHash에 들어가는 value값을 변경 시
 Secret ID에 원하는 값이 나온다.
+
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/5.png)
 
@@ -134,9 +139,11 @@ for i in a:
 
 하다보면 이렇게 손으로 하는 건 아닌지 걱정도 해주고
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/7.png)
 
 레고 세트 교환식도 한다.
+
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere3/8.png)
 

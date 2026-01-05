@@ -4,12 +4,12 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "fl53hn.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author
-author-name:    JaeSung Lee
+author-name:    MATTANG
 author-image:   1.jpg
 author-job:     Programmer
 author-email:   fl53hn@naver.com # Add your email for contant form.
 author-twitter: 
-about-author:   코딩과 보안을 좋아하는 사람입니다.
+about-author:   JaeSung Lee
 
 # Social settings
 social-twitter:   

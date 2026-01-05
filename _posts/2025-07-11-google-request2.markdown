@@ -18,6 +18,8 @@ Doors Everywhere2
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/0.png)
 
 
+HTTPS://secuweb-web.2024-BQ.ctfcompetition.com
+
 Doors Everywhere2
 `There are a few news articles there, but there's something odd about their URLs...`
 article중에 이상한 URL이 있다고한다.
@@ -27,11 +29,13 @@ article중에 이상한 URL이 있다고한다.
 
 로그인 하여 News를 확인한다.
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/2.png)
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/3.png)
 
 최신 글은 7, 그 이전글은 5로 되어 있다.
+
 
 ![]({{site.baseurl}}/images/GoogleRequest/DoorsEverywhere2/4.png)
 

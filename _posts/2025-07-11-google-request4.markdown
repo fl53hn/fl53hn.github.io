@@ -17,6 +17,8 @@ Message
 
 ![]({{site.baseurl}}/images/GoogleRequest/salt/1.png)
 
+HTTPS://msg-web.2024-BQ.ctfcompetition.com
+
 `Who remembers PHP? The password_hash() function is so convenient, no one can guess my password`
 
 password_hash()는 간편하며, 본인의 패스워드를 볼 수 없다고 호언장담중이다.
@@ -48,6 +50,7 @@ password_hash()는 간편하며, 본인의 패스워드를 볼 수 없다고 호
 
 여기서 개념을 짚고 넘어가야 한다.
 
+
 ![]({{site.baseurl}}/images/GoogleRequest/salt/password_hash.png)
 
 `Using the PASSWORD_BCRYPT as the algorithm,`
@@ -55,6 +58,7 @@ password_hash()는 간편하며, 본인의 패스워드를 볼 수 없다고 호
 
 72바이트 이후에는 hash값이 잘린다는 내용
 -> 그렇다면 Salt값을 71바이트로 넣고 나머지 하나를 무작위 대입한 뒤 대조해보면 되지 않을까?
+
 
 ![]({{site.baseurl}}/images/GoogleRequest/salt/php.png)
 
