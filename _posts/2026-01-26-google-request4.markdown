@@ -9,7 +9,7 @@ categories: web
 
 Google Beginner's Request
 
-Forum Defender: VERSION_HISTORY
+VERSION_HISTORY
 
 ***
 
