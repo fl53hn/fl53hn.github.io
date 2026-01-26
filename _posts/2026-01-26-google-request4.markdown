@@ -2,7 +2,7 @@
 layout: post
 title: "VERSION_HISTORY"
 image: GR2.png
-date: 2026-01-03 16:22:00 +0900
+date: 2026-01-25 15:50:00 +0900
 tags: [web, hacking, google]
 categories: web
 ---
