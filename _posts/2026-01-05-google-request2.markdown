@@ -15,7 +15,7 @@ Forum Defender: The Warden's Gauntlet (Part II)
 
 **Google Beginner's Request - Forum Defender: The Warden's Gauntlet (Part II)**
 
-![]({{site.baseurl}}/images/GoogleRequest/ForumDefender2/1.png)
+![]({{site.baseurl}}/images/GoogleRequest_2026/ForumDefender2/1.png)
 
 https://forum-defender-web.2025-bq.ctfcompetition.com
 
@@ -24,7 +24,7 @@ https://forum-defender-web.2025-bq.ctfcompetition.com
 최첨단 콘텐츠 분석 환경은 제출된 모든 콘텐츠를 꼼꼼하게 검토합니다. 그들은 이 필터가 "승인되지 않은 도메인 간 통신에 영향을 받지 않으며" 콘텐츠가 저장되기 전에 모든 위험 요소를 제거한다고 주장합니다. 겉보기에는 무해해 보이는 사용자 입력을 위조하여 저장한 후, 검토 과정에서 워든 시스템 자체에 전례 없는 오류를 발생시킬 수도 있습니다.
 
 
-![]({{site.baseurl}}/images/GoogleRequest/ForumDefender2/2.png)
+![]({{site.baseurl}}/images/GoogleRequest_2026/ForumDefender2/2.png)
 
 ...이건 걍 XSS 넣었는데 나왔다...
 
